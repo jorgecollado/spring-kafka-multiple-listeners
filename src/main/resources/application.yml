@@ -1,0 +1,19 @@
+spring:
+    profiles:
+        active: ${ENV:dev}
+    kafka:
+        bootstrap-servers: localhost:9092
+        security:
+            protocol: PLAINTEXT
+        client-id: "demo"
+        producer:
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+            acks: all
+        consumer:
+            group-id: "demo"
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            auto-offset-reset: earliest
+        properties:
+            spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+            spring.deserializer.value.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
